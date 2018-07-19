@@ -150,7 +150,14 @@
     _shop = shop;
     
     self.nameLabel.text = shop.name;
-    self.iconView.image = [UIImage imageNamed:shop.icon];
+    
+    /**
+     如果图片名称是nil的话则运行之后控制台会打印"CUICatalog: Invalid asset name supplied: '(null)'"语句，要避免这个问题的发生就要先判断图片名称是否存在，再赋值给UIImageView控件。
+     */
+    if (shop.icon)
+    {
+        self.iconView.image = [UIImage imageNamed:shop.icon];
+    }
 }
 
 @end
