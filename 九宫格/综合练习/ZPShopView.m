@@ -15,7 +15,9 @@
  1、用代码创建：首先会调用initWithFrame方法，一般在此方法中会创建此自定义控件内的子控件（不设置尺寸）并做一些初始化的工作。然后会调用layoutSubviews方法，在此方法中设置此自定义控件内的子控件的尺寸。接着会调用drawRect方法，一般会在此方法中做一些子控件的初始化工作。这种用代码创建自定义控件的方式不会调用initWithCoder和awakeFromNib方法；
  2、用xib创建：首先会调用initWithCoder方法，但是在此方法中不能使用连线的属性（子控件），因此在此方法中不能做任何事情。然后会调用awakeFromNib方法，在此方法中可以使用连线的属性（子控件）了，一般在此方法中做一些子控件的初始化工作，但不设置子控件的尺寸。接着会调用layoutSubviews方法，一般在此方法中设置子控件的尺寸。最后会调用drawRect方法，一般在此方法中做一些子控件的初始化工作。这种用xib创建的方式不会调用initWithFrame方法。
  
- UITableViewCell或者它的子类调用的方法和顺序也如上所述。
+ 自定义cell的封装和上述的自定义控件的封装略有区别：
+ 1、用代码自定义：在自定义cell类(ZPTableViewCell)中的initWithStyle:reuseIdentifier:方法中创建自定义cell里面的子控件，然后在此类中的layoutSubviews方法中设置这些子控件的尺寸即可；
+ 2、用xib自定义：在自定义cell类(ZPTableViewCell)中的cellWithTableView方法中加载自定义cell的xib文件即可。
  */
 #import "ZPShopView.h"
 #import "Shop.h"
